@@ -1,10 +1,36 @@
+// Modules
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+// Components
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { ProductsListPageComponent } from './pages/products-list-page/products-list-page.component';
+import { SuccessOrderPageComponent } from './pages/success-order-page/success-order-page.component';
+
+const routes: Routes = [
+  {
+    path: 'cart',
+    component: CartPageComponent,
+  },
+  {
+    path: 'products',
+    component: ProductsListPageComponent,
+  },
+  {
+    path: 'success',
+    component: SuccessOrderPageComponent,
+  },
+  {
+    path: '',
+    redirectTo: 'products',
+    pathMatch: 'full',
+  },
+  { path: '**', component: NotFoundPageComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
