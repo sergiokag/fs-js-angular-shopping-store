@@ -34,4 +34,11 @@ export class ShoppingStoreService {
       map((data) => data)
     );
   }
+
+  public getSpecificProduct(id: number): Product | null {
+    const foundProduct = this.productListSubject.value.find(
+      (obj) => obj.id === id
+    );
+    return foundProduct || null;
+  }
 }

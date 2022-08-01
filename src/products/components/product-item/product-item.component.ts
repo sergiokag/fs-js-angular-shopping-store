@@ -8,8 +8,17 @@ import { Product } from 'src/app/services/shopping-store.service';
 })
 export class ProductItemComponent implements OnInit {
   @Input() public product: Product | null = null;
+  public options: { value: number; description: string }[] = Array.from({
+    length: 10,
+  }).map((_, i) => ({
+    value: i + 1,
+    description: `${i + 1}`,
+  }));
 
-  constructor() {}
+  public constructor() {}
+  public onOptionValueChange(value: string): void {
+    console.log(value);
+  }
 
   ngOnInit(): void {}
 }

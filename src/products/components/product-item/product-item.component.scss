@@ -4,10 +4,20 @@
   }
 
   .img-container {
+    position: relative;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
     height: 200px;
+  }
+
+  .img-link {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 
   .text-container {
