@@ -1,25 +1,5 @@
 <ng-container *ngIf="(products$ | async) as products">
-  <ul class="product-list row align-items-start">
-    <li class="col-md-3 col-sm-6 mb-4" *ngFor="let product of products">
-      <section class="outer-img-wrapper">
-        <div class="img-container" [ngStyle]="{ 'background-image': 'url(' + product.image + ')' }">
-        </div>
-      </section>
-      <section class="text-container text-center">
-        <h5 [title]="product.title">{{ product.title }}</h5>
-      </section>
-      <section class="text-center">
-        <p><strong>{{ product.price | currency }}</strong></p>
-      </section>
-      <section class="display-flex justify-center">
-        <select name="" id="">
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
-      </section>
-      <section class="button-container text-center mt-2">
-        <button type="button" class="btn btn-primary">Add to Cart</button>
-      </section>
-    </li>
-  </ul>
+  <div class="product-list row align-items-start">
+    <app-product-item class="col-md-3 col-sm-6 mb-4" *ngFor="let product of products" [product]="product"></app-product-item>
+  </div>
 </ng-container>

@@ -1,1 +1,21 @@
-<p>product-item works!</p>
+<article>
+  <section class="outer-img-wrapper">
+    <div class="img-container" [ngStyle]="{ 'background-image': 'url(' + product?.image + ')' }">
+    </div>
+  </section>
+  <section class="text-container text-center">
+    <h5 [title]="product?.title">{{ product?.title }}</h5>
+  </section>
+  <section class="text-center">
+    <p><strong>{{ product?.price | currency }}</strong></p>
+  </section>
+  <section class="display-flex justify-center">
+    <select name="" id="">
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+  </section>
+  <section class="button-container text-center mt-2">
+    <button type="button" class="btn btn-primary">Add to Cart</button>
+  </section>
+</article>
