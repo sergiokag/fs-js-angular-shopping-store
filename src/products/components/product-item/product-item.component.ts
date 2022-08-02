@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/services/shopping-store.service';
+import {
+  Product,
+  ShoppingStoreService,
+} from 'src/app/services/shopping-store.service';
 
 @Component({
   selector: 'app-product-item',
@@ -15,9 +18,16 @@ export class ProductItemComponent implements OnInit {
     description: `${i + 1}`,
   }));
 
-  public constructor() {}
-  public onOptionValueChange(value: string): void {
-    console.log(value);
+  public constructor(
+    private readonly shoppingStoreService: ShoppingStoreService
+  ) {}
+
+  public onAddToCart(product: Product | null, quantity: string): void {
+    console.log({ product, quantity });
+    if (!product) {
+      return;
+    }
+    this.shoppingStoreService.addToCart(product, +quantity);
   }
 
   ngOnInit(): void {}

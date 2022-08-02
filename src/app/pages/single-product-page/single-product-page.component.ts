@@ -29,12 +29,19 @@ export class SingleProductPageComponent implements OnInit {
     console.log(value);
   }
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id') as string;
-    this.product = this.shoppingStoreService.getSpecificProduct(+id);
+  public ngOnInit(): void {
+    const id = +(this.route.snapshot.paramMap.get('id') as string);
+    this.product = this.shoppingStoreService.getSpecificProduct(id);
     if (!id || !this.product) {
       this.router.navigate(['/products']);
       return;
     }
+  }
+
+  public onAddToCart(product: Product | null, quantity: string): void {
+    if (!product) {
+      return;
+    }
+    this.shoppingStoreService.addToCart(product, +quantity);
   }
 }

@@ -23,8 +23,25 @@ export class ShoppingStoreService {
   private productListSubject: BehaviorSubject<Product[]> = new BehaviorSubject<
     Product[]
   >([]);
+  private cartMap: Map<Product, number> = new Map();
 
   public constructor(private httpClient: HttpClient) {}
+
+  public addToCart(product: Product, quantity: number): void {
+    // TODO update
+    this.cartMap.set(product, quantity);
+  }
+
+  public get cartProducts(): [Product, number][] {
+    return Array.from(this.cartMap.entries());
+  }
+
+  public get cartProductsPrice(): number {
+    return Array.from(this.cartMap.entries()).reduce(
+      (acc, curr) => acc + curr[0].price * curr[1],
+      0
+    );
+  }
 
   public getProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.url).pipe(
@@ -40,5 +57,10 @@ export class ShoppingStoreService {
       (obj) => obj.id === id
     );
     return foundProduct || null;
+  }
+
+  public updateTotalPrice(product: Product, quantity: number): void {
+    // TODO update
+    this.cartMap.set(product, quantity);
   }
 }

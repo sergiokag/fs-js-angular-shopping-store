@@ -14,6 +14,7 @@ import { ProductsListPageComponent } from './pages/products-list-page/products-l
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { SingleProductPageComponent } from './pages/single-product-page/single-product-page.component';
 import { SuccessOrderPageComponent } from './pages/success-order-page/success-order-page.component';
+import { CartModule } from 'src/cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SuccessOrderPageComponent } from './pages/success-order-page/success-or
     AppRoutingModule,
     NgbModule,
     ProductsModule,
+    CartModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
