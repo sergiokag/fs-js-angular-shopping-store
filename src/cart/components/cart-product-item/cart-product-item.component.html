@@ -2,7 +2,7 @@
   <div class="col-12 fs-3 fw-semibold">
     <p>Total: {{ shoppingStoreService.cartProductsPrice | currency }}</p>
   </div>
-  <div class="row" *ngFor="let productDetails of cardProductsDetails">
+  <div class="row" *ngFor="let productDetails of shoppingStoreService.cartProducts">
     <div class="col-md-5 mb-3">
       <div class="img-container" [ngStyle]="{ 'background-image': 'url(' + productDetails[0].image + ')'}"></div>
     </div>

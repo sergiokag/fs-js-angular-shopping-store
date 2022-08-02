@@ -1,16 +1,58 @@
-<form>
+<form  #orderForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="mb-3">
     <label for="fullNameInput" class="form-label">Full Name</label>
-    <input type="text" class="form-control" id="fullNameInput">
+    <input
+      type="text"
+      required
+      class="form-control"
+      [ngClass]="{ 'is-invalid': fullNameInput.invalid && fullNameInput.touched }"
+      name="fullNameInput"
+      id="fullNameInput"
+      #fullNameInput="ngModel"
+      [(ngModel)]="order.fullName"
+      placeholder="(Minimum 3 characters)"
+      minlength="3">
+    <div *ngIf="fullNameInput.errors && fullNameInput.errors['minlength']" class="invalid-feedback">
+      Minimum length is 3!
+    </div>
   </div>
   <div class="mb-3">
     <label for="addressInput" class="form-label">Address</label>
-    <input type="text" class="form-control" id="addressInput">
+    <input
+      type="text"
+      required
+      class="form-control"
+      [ngClass]="{ 'is-invalid': addressInput.invalid && addressInput.touched }"
+      #addressInput="ngModel"
+      name="addressInput"
+      id="addressInput"
+      [(ngModel)]="order.address"
+      placeholder="(Minimum 6 characters)"
+      minlength="6">
+    <div *ngIf="addressInput.errors && addressInput.errors['minlength']" class="invalid-feedback">
+      Minimum length is 6!
+    </div>
   </div>
   <div class="mb-3">
     <label for="creditCardNumberInput" class="form-label">Credit Card Number</label>
-    <input type="text" class="form-control" id="creditCardNumberInput" aria-describedby="ccnHelp">
+    <input
+      type="text"
+      required
+      class="form-control"
+      [ngClass]="{ 'is-invalid': creditCardNumberInput.invalid && creditCardNumberInput.touched }"
+      #creditCardNumberInput="ngModel"
+      name="creditCardNumberInput"
+      id="creditCardNumberInput"
+      aria-describedby="ccnHelp"
+      [(ngModel)]="order.creditCardNumber"
+      placeholder="(16 digit number)"
+      pattern="^\d{16}$">
+    <div *ngIf="creditCardNumberInput.errors && creditCardNumberInput.errors['pattern']" class="invalid-feedback">
+      Input is digit only and must have length of 16 characters!
+    </div>
     <div id="ccnHelp" class="form-text">We'll never share your crecit card details with anyone else.</div>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!orderForm.form.valid">Submit</button>
+
+  <pre>{{ order | json }}</pre>
 </form>

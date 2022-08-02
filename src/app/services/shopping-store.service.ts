@@ -63,4 +63,10 @@ export class ShoppingStoreService {
     // TODO update
     this.cartMap.set(product, quantity);
   }
+
+  public removeProduct(product: Product): void {
+    this.cartMap.delete(product);
+    this.cartMap = new Map(this.cartMap);
+    console.log({ cart: this.cartMap });
+  }
 }

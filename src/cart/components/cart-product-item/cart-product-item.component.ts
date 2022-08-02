@@ -10,18 +10,16 @@ import {
   styleUrls: ['./cart-product-item.component.scss'],
 })
 export class CartProductItemComponent {
-  public cardProductsDetails: [Product, number][] = [];
-
   public constructor(
     public readonly shoppingStoreService: ShoppingStoreService
-  ) {
-    this.cardProductsDetails = this.shoppingStoreService.cartProducts;
-  }
+  ) {}
 
-  public onAmountChange(
-    product: Product,
-    quantity: string
-  ): void {
-    this.shoppingStoreService.updateTotalPrice(product, +quantity)
+  public onAmountChange(product: Product, quantity: string): void {
+    const quantityNum = +quantity;
+    if (quantityNum) {
+      this.shoppingStoreService.updateTotalPrice(product, quantityNum);
+      return;
+    }
+    this.shoppingStoreService.removeProduct(product);
   }
 }
