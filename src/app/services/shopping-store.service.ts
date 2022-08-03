@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { OrderDetails } from 'src/cart/components/cart-form/cart-form.component';
 
 export interface Product {
   id?: number;
@@ -19,7 +20,8 @@ export interface Product {
   providedIn: 'root',
 })
 export class ShoppingStoreService {
-  public url = 'https://fakestoreapi.com/products';
+  public readonly url = 'https://fakestoreapi.com/products';
+  public order: OrderDetails | null = null;
   private productListSubject: BehaviorSubject<Product[]> = new BehaviorSubject<
     Product[]
   >([]);
@@ -41,6 +43,10 @@ export class ShoppingStoreService {
       (acc, curr) => acc + curr[0].price * curr[1],
       0
     );
+  }
+
+  public clearCart(): void {
+    this.cartMap = new Map();
   }
 
   public getProducts(): Observable<Product[]> {
