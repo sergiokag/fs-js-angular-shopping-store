@@ -15,6 +15,7 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { SingleProductPageComponent } from './pages/single-product-page/single-product-page.component';
 import { SuccessOrderPageComponent } from './pages/success-order-page/success-order-page.component';
 import { CartModule } from 'src/cart/cart.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CartModule } from 'src/cart/cart.module';
     CartPageComponent,
     SingleProductPageComponent,
     SuccessOrderPageComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { CartModule } from 'src/cart/cart.module';
     NgbModule,
     ProductsModule,
     CartModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
