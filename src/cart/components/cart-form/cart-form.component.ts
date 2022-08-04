@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ShoppingStoreService } from 'src/app/services/shopping-store.service';
 
 export interface OrderDetails {
   fullName: string;
@@ -12,7 +13,8 @@ export interface OrderDetails {
   styleUrls: ['./cart-form.component.scss'],
 })
 export class CartFormComponent {
-  @Output() public submitEventEmitter: EventEmitter<OrderDetails> = new EventEmitter();
+  @Output() public submitEventEmitter: EventEmitter<OrderDetails> =
+    new EventEmitter();
 
   public order: OrderDetails = {
     fullName: '',
@@ -20,7 +22,9 @@ export class CartFormComponent {
     creditCardNumber: '',
   };
 
-  public constructor() {}
+  public constructor(
+    public readonly shoppingStoreService: ShoppingStoreService
+  ) {}
 
   public onSubmit(): void {
     this.submitEventEmitter.emit(this.order);

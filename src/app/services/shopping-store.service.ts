@@ -73,6 +73,5 @@ export class ShoppingStoreService {
   public removeProduct(product: Product): void {
     this.cartMap.delete(product);
     this.cartMap = new Map(this.cartMap);
-    console.log({ cart: this.cartMap });
   }
 }

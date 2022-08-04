@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 import {
   Product,
   ShoppingStoreService,
@@ -22,7 +23,8 @@ export class SingleProductPageComponent implements OnInit {
   public constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private shoppingStoreService: ShoppingStoreService
+    private shoppingStoreService: ShoppingStoreService,
+    private notificationService: NotificationService
   ) {}
 
   public onOptionValueChange(value: string): void {
@@ -43,5 +45,11 @@ export class SingleProductPageComponent implements OnInit {
       return;
     }
     this.shoppingStoreService.addToCart(product, +quantity);
+    this.notificationService.notifier.info('Product added to cart!', {
+      position: 'top-right',
+      durations: {
+        info: 1000,
+      },
+    });
   }
 }

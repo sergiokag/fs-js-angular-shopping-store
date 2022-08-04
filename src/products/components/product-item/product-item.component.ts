@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NotificationService } from 'src/app/services/notification.service';
+
 import {
   Product,
   ShoppingStoreService,
@@ -19,15 +21,21 @@ export class ProductItemComponent implements OnInit {
   }));
 
   public constructor(
-    private readonly shoppingStoreService: ShoppingStoreService
+    private readonly shoppingStoreService: ShoppingStoreService,
+    private readonly notificationService: NotificationService
   ) {}
 
   public onAddToCart(product: Product | null, quantity: string): void {
-    console.log({ product, quantity });
     if (!product) {
       return;
     }
     this.shoppingStoreService.addToCart(product, +quantity);
+    this.notificationService.notifier.info('Product added to cart!', {
+      position: 'top-right',
+      durations: {
+        info: 1000,
+      },
+    });
   }
 
   ngOnInit(): void {}

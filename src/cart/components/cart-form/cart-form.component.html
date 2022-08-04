@@ -46,6 +46,7 @@
       aria-describedby="ccnHelp"
       [(ngModel)]="order.creditCardNumber"
       placeholder="(16 digit number)"
+      maxlength="16"
       pattern="^\d{16}$">
     <div *ngIf="creditCardNumberInput.errors && creditCardNumberInput.errors['pattern']" class="invalid-feedback">
       Input is digit only and must have length of 16 characters!

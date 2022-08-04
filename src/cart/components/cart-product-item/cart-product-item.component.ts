@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NotificationService } from 'src/app/services/notification.service';
 import {
   Product,
   ShoppingStoreService,
@@ -11,7 +12,8 @@ import {
 })
 export class CartProductItemComponent {
   public constructor(
-    public readonly shoppingStoreService: ShoppingStoreService
+    public readonly shoppingStoreService: ShoppingStoreService,
+    private readonly notificationService: NotificationService,
   ) {}
 
   public onAmountChange(product: Product, quantity: string): void {
@@ -21,5 +23,11 @@ export class CartProductItemComponent {
       return;
     }
     this.shoppingStoreService.removeProduct(product);
+    this.notificationService.notifier.success('Product removed!', {
+      position: 'top-right',
+      durations: {
+        success: 1500,
+      },
+    });
   }
 }
