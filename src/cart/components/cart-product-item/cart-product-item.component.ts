@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NotificationService } from 'src/app/services/notification.service';
 import {
   Product,
@@ -11,6 +11,19 @@ import {
   styleUrls: ['./cart-product-item.component.scss'],
 })
 export class CartProductItemComponent {
+  @Input() public product: Product = {
+    title: '',
+    price: 0,
+    description: '',
+    category: '',
+    image: '',
+    quantity: 0,
+    rating: {
+      rate: 0,
+      count: 0,
+    },
+  };
+
   public constructor(
     public readonly shoppingStoreService: ShoppingStoreService,
     private readonly notificationService: NotificationService
