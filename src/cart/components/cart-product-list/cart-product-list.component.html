@@ -3,6 +3,11 @@
     <p>Total: {{ shoppingStoreService.cartProductsPrice$ | async | currency }}</p>
   </div>
   <ng-container *ngIf="shoppingStoreService.cartProducts$ | async as cartProducts">
-    <app-cart-product-item *ngFor="let product of cartProducts" [product]="product"></app-cart-product-item>
+    <div *ngIf="cartProducts.length">
+      <app-cart-product-item *ngFor="let product of cartProducts" class="mb-1" [product]="product"></app-cart-product-item>
+    </div>
+    <div *ngIf="!cartProducts.length">
+        <p class="fs-2 fw-semibold mt-4">Add some products to cart...</p>
+    </div>
   </ng-container>
 </section>
