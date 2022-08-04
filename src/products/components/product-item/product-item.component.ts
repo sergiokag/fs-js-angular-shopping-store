@@ -21,22 +21,9 @@ export class ProductItemComponent implements OnInit {
   }));
 
   public constructor(
-    private readonly shoppingStoreService: ShoppingStoreService,
+    public readonly shoppingStoreService: ShoppingStoreService,
     private readonly notificationService: NotificationService
   ) {}
-
-  public onAddToCart(product: Product | null, quantity: string): void {
-    if (!product) {
-      return;
-    }
-    this.shoppingStoreService.addToCart(product, +quantity);
-    this.notificationService.notifier.info('Product added to cart!', {
-      position: 'top-right',
-      durations: {
-        info: 1000,
-      },
-    });
-  }
 
   ngOnInit(): void {}
 }

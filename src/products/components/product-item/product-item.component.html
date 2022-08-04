@@ -16,6 +16,6 @@
     </select>
   </section>
   <section class="button-container text-center mt-3">
-    <button type="button" class="btn btn-primary" (click)="onAddToCart(product, selectQuantity.value)">Add to Cart</button>
+      <button type="button" class="btn btn-primary" (click)="shoppingStoreService.addToCart(product, +selectQuantity.value)">Add to Cart</button>
   </section>
 </article>

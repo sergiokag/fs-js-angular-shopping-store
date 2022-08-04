@@ -1,21 +1,23 @@
 <div class="row">
   <div class="col-12 fs-3 fw-semibold">
-    <p>Total: {{ shoppingStoreService.cartProductsPrice | currency }}</p>
+    <p>Total: {{ shoppingStoreService.cartProductsPrice$ | async | currency }}</p>
   </div>
-  <div class="row" *ngFor="let productDetails of shoppingStoreService.cartProducts">
-    <div class="col-md-5 mb-3">
-      <div class="img-container" [ngStyle]="{ 'background-image': 'url(' + productDetails[0].image + ')'}"></div>
+  <ng-container *ngIf="shoppingStoreService.cartProducts$ | async as cartProducts">
+    <div class="row" *ngFor="let productDetails of cartProducts">
+      <div class="col-md-5 mb-3">
+        <div class="img-container" [ngStyle]="{ 'background-image': 'url(' + productDetails?.image + ')'}"></div>
+      </div>
+      <div class="col-md-6 ms-auto">
+        <div class="title-container mb-4 fs-6 fw-semibold">
+          {{ productDetails?.title }}
+        </div>
+        <div class="price-container mb-4 fs-6 fw-semibold">
+          {{ productDetails?.price | currency }}
+        </div>
+        <div class="price-container fs-6 mb-3 fw-semibold">
+          Amount: <input type="number" #amountControl min="0" max="99" [value]="productDetails?.quantity" (change)="onAmountChange(productDetails, amountControl.value)">
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 ms-auto">
-      <div class="title-container mb-4 fs-6 fw-semibold">
-        {{ productDetails[0].title }}
-      </div>
-      <div class="price-container mb-4 fs-6 fw-semibold">
-        {{ productDetails[0].price | currency }}
-      </div>
-      <div class="price-container fs-6 mb-3 fw-semibold">
-        Amount: <input type="number" #amountControl min="0" max="99" [value]="productDetails[1]" (change)="onAmountChange(productDetails[0], amountControl.value)">
-      </div>
-    </div>
-  </div>
+  </ng-container>
 </div>

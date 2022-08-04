@@ -2,9 +2,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ProductItemComponent } from './components/product-item/product-item.component';
 
 // Components
+import { ProductItemComponent } from './components/product-item/product-item.component';
 import { ProductListComponent } from './components/products-list/products-list.component';
 
 @NgModule({

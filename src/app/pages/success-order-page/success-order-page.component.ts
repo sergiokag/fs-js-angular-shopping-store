@@ -10,22 +10,19 @@ import { ShoppingStoreService } from 'src/app/services/shopping-store.service';
 })
 export class SuccessOrderPageComponent implements OnInit {
   public faSquareCheckIcon = faSquareCheck;
-  public clientName = '';
-  public orderPrice = 0;
 
-  public constructor(private shoppingStoreService: ShoppingStoreService, private router: Router) {
-    this.clientName = this.shoppingStoreService.order?.fullName ?? '';
-    this.orderPrice = this.shoppingStoreService.cartProductsPrice;
-  }
+  public constructor(
+    public readonly shoppingStoreService: ShoppingStoreService,
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {}
 
   public onNewOrder(): void {
     this.router.navigate(['/products']).then((isSuccess) => {
-      if(isSuccess) {
-        this.shoppingStoreService.order = null;
-        this.shoppingStoreService.clearCart();
+      if (isSuccess) {
+        this.shoppingStoreService.setState({ cart: [], order: null });
       }
-    })
+    });
   }
 }

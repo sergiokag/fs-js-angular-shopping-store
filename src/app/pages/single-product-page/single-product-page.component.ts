@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from 'src/app/services/notification.service';
 import {
   Product,
   ShoppingStoreService,
@@ -23,8 +22,7 @@ export class SingleProductPageComponent implements OnInit {
   public constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private shoppingStoreService: ShoppingStoreService,
-    private notificationService: NotificationService
+    public readonly shoppingStoreService: ShoppingStoreService
   ) {}
 
   public onOptionValueChange(value: string): void {
@@ -33,23 +31,10 @@ export class SingleProductPageComponent implements OnInit {
 
   public ngOnInit(): void {
     const id = +(this.route.snapshot.paramMap.get('id') as string);
-    this.product = this.shoppingStoreService.getSpecificProduct(id);
-    if (!id || !this.product) {
-      this.router.navigate(['/products']);
+    if (id) {
+      this.product = this.shoppingStoreService.getSpecificProduct(id);
       return;
     }
-  }
-
-  public onAddToCart(product: Product | null, quantity: string): void {
-    if (!product) {
-      return;
-    }
-    this.shoppingStoreService.addToCart(product, +quantity);
-    this.notificationService.notifier.info('Product added to cart!', {
-      position: 'top-right',
-      durations: {
-        info: 1000,
-      },
-    });
+    this.router.navigate(['/products']);
   }
 }

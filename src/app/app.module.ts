@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from 'src/products/products.module';
+import { CartModule } from 'src/cart/cart.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Components
 import { AppComponent } from './app.component';
@@ -14,8 +16,6 @@ import { ProductsListPageComponent } from './pages/products-list-page/products-l
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { SingleProductPageComponent } from './pages/single-product-page/single-product-page.component';
 import { SuccessOrderPageComponent } from './pages/success-order-page/success-order-page.component';
-import { CartModule } from 'src/cart/cart.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [

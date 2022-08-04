@@ -13,20 +13,27 @@ import {
 export class CartProductItemComponent {
   public constructor(
     public readonly shoppingStoreService: ShoppingStoreService,
-    private readonly notificationService: NotificationService,
+    private readonly notificationService: NotificationService
   ) {}
 
   public onAmountChange(product: Product, quantity: string): void {
     const quantityNum = +quantity;
     if (quantityNum) {
       this.shoppingStoreService.updateTotalPrice(product, quantityNum);
+      this.notificationService.notifier.success('Product updated!', {
+        position: 'top-right',
+        durations: {
+          success: 1500,
+        },
+      });
       return;
     }
+
     this.shoppingStoreService.removeProduct(product);
-    this.notificationService.notifier.success('Product removed!', {
+    this.notificationService.notifier.info('Product removed!', {
       position: 'top-right',
       durations: {
-        success: 1500,
+        info: 1500,
       },
     });
   }

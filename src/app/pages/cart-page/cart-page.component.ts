@@ -17,7 +17,7 @@ export class CartPageComponent implements OnInit {
   public ngOnInit(): void {}
 
   public onFormSubmission(order: OrderDetails): void {
-    this.shoppingStoreService.order = order;
+    this.shoppingStoreService.setState({ order });
     this.router.navigate(['/success']);
   }
 }

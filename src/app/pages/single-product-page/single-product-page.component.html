@@ -17,7 +17,7 @@
       </select>
     </section>
     <section class="button-container mt-3">
-      <button type="button" class="btn btn-primary" (click)="onAddToCart(product, selectQuantity.value)">Add to Cart</button>
+      <button type="button" class="btn btn-primary" (click)="shoppingStoreService.addToCart(product, +selectQuantity.value)">Add to Cart</button>
     </section>
     <section class="link-container mt-3">
       <a [routerLink]="['/products']">Back to products list</a>

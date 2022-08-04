@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ShoppingStoreService } from 'src/app/services/shopping-store.service';
 
 export interface OrderDetails {
