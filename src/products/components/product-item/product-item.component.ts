@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NotificationService } from 'src/app/services/notification.service';
 
 import {
   Product,
@@ -21,8 +20,7 @@ export class ProductItemComponent implements OnInit {
   }));
 
   public constructor(
-    public readonly shoppingStoreService: ShoppingStoreService,
-    private readonly notificationService: NotificationService
+    public readonly shoppingStoreService: ShoppingStoreService
   ) {}
 
   ngOnInit(): void {}

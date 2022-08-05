@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsListPageComponent } from './products-list-page.component';
@@ -8,9 +9,9 @@ describe('ProductsListPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductsListPageComponent ]
-    })
-    .compileComponents();
+      declarations: [ProductsListPageComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductsListPageComponent);
     component = fixture.componentInstance;

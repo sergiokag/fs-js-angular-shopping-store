@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA, Provider } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductItemComponent } from './product-item.component';
@@ -8,9 +10,16 @@ describe('ProductItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductItemComponent ]
-    })
-    .compileComponents();
+      declarations: [ProductItemComponent],
+      providers: [
+        {
+          provide: HttpClient,
+          useFactory: () =>
+            jasmine.createSpyObj<HttpClient>(HttpClient.name, ['get'], {}),
+        },
+      ] as Provider[],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductItemComponent);
     component = fixture.componentInstance;
