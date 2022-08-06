@@ -71,6 +71,10 @@ export class ShoppingStoreService {
       .pipe(map((state) => state.order?.fullName ?? ''));
   }
 
+  public getState(): ShoppingStoreState {
+    return this.#state.value;
+  }
+
   public setState(partialState: Partial<ShoppingStoreState>): void {
     const currentState = this.#state.getValue();
     const nextState = Object.assign({}, currentState, partialState);
